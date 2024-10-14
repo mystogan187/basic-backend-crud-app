@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registro de Auditoría{% endblock %}
+
+{% block body %}
+    <h1>Registro de Auditoría</h1>
+
+    <ul>
+        {% for audit in audits %}
+            <li>
+                {{ audit.descripcion }}
+            </li>
+        {% else %}
+            <li>No hay acciones registradas.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('todo_index') }}">Volver a la lista de tareas</a>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Auditoría de Tarea {{ todoId }}{% endblock %}
+
+{% block body %}
+    <h1>Auditoría de Tarea {{ todoId }}</h1>
+
+    <ul>
+        {% for audit in audits %}
+            <li>
+                {{ audit.descripcion }}
+            </li>
+        {% else %}
+            <li>No hay acciones registradas para esta tarea.</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ path('audit_index') }}">Volver al registro de auditoría</a>
+    <a href="{{ path('todo_index') }}">Volver a la lista de tareas</a>
+{% endblock %}

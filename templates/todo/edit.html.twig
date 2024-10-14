@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editar Tarea{% endblock %}
+
+{% block body %}
+    <h1>Editar Tarea</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.titulo) }}
+    {{ form_row(form.completada) }}
+    <button type="submit">Actualizar</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('todo_index') }}">Volver a la lista</a>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detalles de Tarea{% endblock %}
+
+{% block body %}
+    <h1>Detalles de Tarea</h1>
+
+    <p><strong>Título:</strong> {{ todo.titulo }}</p>
+    <p><strong>Completada:</strong> {{ todo.completada ? 'Sí' : 'No' }}</p>
+    <p><strong>Fecha de Creación:</strong> {{ todo.fechaCreacion|date('Y-m-d H:i') }}</p>
+    {% if todo.fechaCompletada %}
+        <p><strong>Fecha de Completada:</strong> {{ todo.fechaCompletada|date('Y-m-d H:i') }}</p>
+    {% endif %}
+
+    <a href="{{ path('todo_edit', { id: todo.id }) }}">Editar</a>
+    <a href="{{ path('todo_index') }}">Volver a la lista</a>
+{% endblock %}

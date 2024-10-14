@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lista de Tareas{% endblock %}
+
+{% block body %}
+    <h1>Lista de Tareas</h1>
+    <div style="padding:1vh">
+    <a style="padding:1em" href="{{ path('todo_new') }}">Crear Nueva Tarea</a>
+    <a style="padding:1em" href="{{ path('audit_index') }}">Ver Registro de Auditoría</a>
+    </div>
+
+    <ul>
+        {% for todo in todos %}
+            <li style="padding:1ch">
+                {{ todo.titulo }}
+                {% if todo.completada %}
+                    (Completada)
+                {% endif %}
+                - <a href="{{ path('todo_show', { id: todo.id }) }}">Ver</a>
+                - <a href="{{ path('todo_edit', { id: todo.id }) }}">Editar</a>
+                {% if not todo.completada %}
+                    - <form action="{{ path('todo_complete', { id: todo.id }) }}" method="post" style="display:inline;">
+                    <button type="submit">Marcar como Completada</button>
+                </form>
+                {% endif %}
+                - <form action="{{ path('todo_delete', { id: todo.id }) }}" method="post" style="display:inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ todo.id) }}">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </li>
+        {% else %}
+            <li>No hay tareas disponibles.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
