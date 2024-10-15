@@ -33,7 +33,8 @@ class TodoController extends AbstractController
     #[Route('/todo/new', name: 'todo_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
     {
-        $form = $this->createForm(TodoType::class);
+        $todo = new Todo('');
+        $form = $this->createForm(TodoType::class, $todo);
 
         $form->handleRequest($request);
 
